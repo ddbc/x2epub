@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schema/ebook.rnc" type='application/relax-ng-compact-syntax?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>書名</title>
+        <author>作者名</author>
+      </titleStmt>
+      <publicationStmt>
+        <p> (出版陳述) 匯集電子文件或其他類型文件的出版或發行相關資訊。</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>關於來源的資訊</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div>
+        <head>第一章標題</head>
+        <p>第一段內容。</p>
+      </div>
+      <div>
+        <head>第二章標題</head>
+        <p>第一段內容。</p>
+      </div>
+    </body>
+  </text>
+</TEI>

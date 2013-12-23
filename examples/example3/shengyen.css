@@ -1,0 +1,44 @@
+a.noteAnchor {
+	vertical-align: super;
+	font-size:small;
+}
+
+div.lg {
+	margin-left: 1em;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border-width: 1px;
+	border-style:solid;
+}
+
+table.noborder td {
+	border: 0;
+	vertical-align:top;
+	padding: 5px;
+}
+
+p.byline {
+	text-align: right;
+}
+p.note {
+	margin-left:1em;
+	text-indent:-1em;
+	font-size:small;
+}
+p.quote {
+	margin-left: 1em;
+}
+
+div.item {
+	margin-left: 1em;
+	text-indent: -1em;
+}
+
+span.inline_note {
+	font-size: small;
+}

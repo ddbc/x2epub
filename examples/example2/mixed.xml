@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schema/ebook.rnc" type='application/relax-ng-compact-syntax?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>綜合範例</title>
+        <author>作者名</author>
+      </titleStmt>
+      <publicationStmt>
+        <p> (出版陳述) 匯集電子文件或其他類型文件的出版或發行相關資訊。</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>關於來源的資訊</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <front>
+      <figure>
+        <graphic url="a1-1.jpg"/>
+        <head>馬哈希尊者 (1979)</head>
+      </figure>
+    </front>
+    <body>
+      <div>
+        <head>有引文、偈頌的例子</head>
+        <cit rend="display:block">
+          <quote>
+            <lg xml:lang="pi">
+              <l>Yathā agāraṃ suchannaṃ</l>
+              <l>vuṭṭhi samativijjhati,</l>
+              <l>evaṃ subhāvitaṃ cittaṃ</l>
+              <l>rāgo na samativijjhati.</l>
+            </lg>
+            <lg>
+              <l>猶如雨水無法穿透屋蓋不密的房子，</l>
+              <l>同樣地貪愛也無法進入已善修止觀的心。</l>
+            </lg>
+          </quote>
+          <bibl rend="display:block;text-align:right">∼《法句經》．第14偈。[35]</bibl>
+        </cit>
+        <quote>
+          <p xml:lang="pi">Ete Kho, Bhikkhave, ubho ante anupagamma majjhima paṭipadā Tathāgatena
+            abhisambuddhā──akhukaraṇi, ñāṇakaraṇi, upasamāya, abhiññāya, sambodhāya, nibbānāya
+            saṃvattati.</p>
+          <p>諸比丘！如來避免這兩個極端後，已得中道智慧──它能作眼、作智，導向寂靜、通智、等覺和涅槃。</p>
+        </quote>
+      </div>
+      <div>
+        <head>圖表</head>
+        <figure rend="page-break-before:always;">
+          <!-- 圖表前換頁 -->
+          <graphic url="52.png"/>
+          <p>圖表說明文字</p>
+        </figure>
+        <p>文繞圖：使用 overflow:hidden 控制 figure 之後的文字不再做文繞圖. 例 9-14 《Master Sheng Yen》</p>
+        <figure rend="page-break-before:always;overflow:hidden">
+          <graphic url="38.png" rend="float:left;margin-right:2px"/>
+          <p>Calligraphy: <quote>“Without encountering things, it knows; its knowing is inherently
+              subtle. Not opposing conditions, it illumines; its luminosity is naturally
+              wondrous.”</quote></p>
+          <p>Often quoted by Master Sheng Yen, these lines describe the essence of Silent
+            Illumination practice. (From Chan Master Hongzhi Zhengjue’s Advice on Sitting
+            Meditation.) </p>
+        </figure>
+      </div>
+      <div>
+        <head>List</head>
+        <list type="bulleted">
+          <item>極端的道路是錯誤的，應避免。</item>
+          <item>中道才是正道。</item>
+        </list>
+        <list type="ordered" rend="list-style-type:lower-alpha">
+          <item>「違犯不善」(vitakkama-akusala)，是顯現於身、口的殺生、偷盜、妄語等的身、語惡行。</item>
+          <item>「纏縛不善」(pariyuṭṭhāna-akusala)，即欲、貪等現起的不善心念。</item>
+          <item>「隨眠不善」(anusaya-akusala)，蟄伏著的不善法，它尚未現前，但機會到來時便會生起。</item>
+        </list>
+      </div>
+      <div>
+        <head>頁尾註 (Footnote)</head>
+        <p>後來阿難向世尊報告這件事，世尊說：「阿難！確實如此，如果比丘或比丘尼持續修習四念處，可以肯定的是，他們會比過去更加了解四聖諦。」<note place="bottom">S V
+            155-6: Evametaṃ, Ānanda, evametaṃ, Ānanda! Yo hi koci, ānanda, bhikkhu vā bhikkhunī vā
+            catūsu satipaṭṭhānesu suppatiṭṭhitacitto viharati, tassetaṃ pāṭikaṅkhaṃ- ‘uḷāraṃ
+            pubbenāparaṃ visesaṃ sañjānissati”.</note></p>
+        <p>佛陀教導法（dhamma）與律（vinaya）。「法」是能夠保證實踐法的人獲得快樂的一種指引。「律」是淨化或美化個人身行、言語的戒律、規範。法與律被稱為
+            sāsana，意思是「教養」（culture），或者說「教養的方法」。<note place="bottom" resp="eng" n="*1"
+            xml:id="n-eng1">Sāsana 常中譯作「教」或「教法」，巴利文
+          buddhasāsana，即指佛陀的教法。</note>這是誰的教養方法？因為這是佛陀所教導的，所以是佛陀的教養方法。相較於另兩種教養方法（持戒與修行），布施是基本的教養方法，是佛陀教養方法的起點。</p>
+      </div>
+      <div>
+        <head>章節末註解</head>
+        <p>People often criticize Chinese Buddhism for its lack of systemization in doctrine and
+          practice. They further criticize it as contrary to the teachings of the
+            <title>Āgamas</title> and Madhyamaka<ref type="noteAnchor" target="#n1">1</ref>. As a
+          result, many Chinese Buddhists are even reluctant to study Chinese Buddhism in a serious
+          manner. But such criticism has its origin in a poor and incomplete understanding of
+          Chinese Buddhist history, doctrine, and practice. If Chinese Buddhism really lacked order
+          and coherence, how has it flourished for over two thousand years?</p>
+        <p rendition="note"><note xml:id="n1" n="1">In contemporary times the reasons that Chinese
+            Buddhism, and Chan Buddhism in particular, are judged in light of these two forms of
+            Indian Buddhism are undoubtedly complex but can be traced back to the impact of Master
+            Yinshun 印順 (1906-2005), the modern Chinese Buddhist scholar monk. For more information
+            about his thought, see below. Only one of his books is translated into English; see
+            Yinshun, The Way to Buddhahood (Boston: Wisdom Publications, 1998).</note></p>
+      </div>
+<div>
+  <head>Seg</head>
+  <p><seg rend="font-weight:bold">問：</seg>人生自有階段性的過程，譬如現在當兵或將來進入社會工作，如果我們對每件事情都盡心盡力，是不是就會有好的結果？</p>
+</div>
+<div>
+  <head>表格</head>
+  <table rendition="noborder">
+    <row><cell>1930</cell><cell>born in Jiangsu Province, China</cell></row>
+    <row><cell>1943</cell><cell>becomes a novice at Guangjiao Monastery, Nantong, Jiangsu province</cell></row>
+  </table>
+</div>
+      <div type="copyright">
+        <head>Copyright</head>
+        <p rend="font-weight:bold">Encounters with Master Sheng Yen</p>
+        <p>Pocket Guides to Buddhist Wisdom E-17</p>
+        <p>Publisher: Sheng Yen Education Foundation<lb/> 2F., No. 48-6, Section 2, Ren-ai Road,
+          Taipei 10056, Taiwan<lb/> Tel: +886-2-2397-9300 Fax: +886-2-2397-5610<lb/>
+          <ref target="http://www.ddm.org.tw">www.ddm.org.tw</ref></p>
+        <p>Speakers: Guo Yuan Fashi, Guo Guang Fashi, Guo Fang Fashi, Chang Kuan Fashi, Chang Yuan
+          Fashi</p>
+        <p>Editorial &amp; Production: Cultural Center, Dharma Drum Mountain <lb/>Revision:
+          International Translation Office</p>
+        <p>Translator: Lip-Huey Beh</p>
+        <p>ISBN: 978-986-6443-54-1</p>
+        <p>1st Edition: June 2013</p>
+      </div>
+    </body>
+  </text>
+</TEI>

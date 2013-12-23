@@ -1,0 +1,97 @@
+﻿TEI Element 轉為 HTML Element 對照
+
+bibl
+	rend="display:block"
+		xml:lang="zh"
+			<p class="bibl_zh">
+	else
+		<p class="bibl">
+byline
+	<p class="byline">
+cell
+	<td>
+cit
+	rend="display:block"
+		<p class="cit">
+	else
+		<span>
+emph
+	<span class="emph">
+figure
+	<div>
+graphic
+	<img>
+head
+	div/head
+		<h1>, <h2>....
+	figure/head
+		<p class="figure_head">
+	table/head
+		<caption>
+	else
+		<p class="head">
+item
+	list[@type="bulleted"]/item
+		<li>
+	list[@type="ordered"]/item
+		<li>
+	else
+		<div class="item">
+lg
+	中文偈頌 quote/lg[@xml:lang="zh"]
+		<div class="lg quote_zh">
+	else
+		<div class="lg">
+list
+	type="ordered"
+		<ol>
+	type="bulleted"
+		<ul>
+	else
+		<div class="list">
+note
+	place="bottom"
+		<p class="note">
+	place="inline"
+		<span class="inline_note">
+p
+	quote/p
+		xml:lang="zh"
+			<p class="quote_zh">
+		else
+			<p class="quote">
+	else
+		<p>
+q
+	rend="display:block"
+		<p class="quote">
+	else
+		<span class="quote">
+quote
+	rend="display:block"
+		xml:lang="zh"
+			<p class="quote_zh">
+		else
+			<p class="quote">
+	else
+		xml:lang="zh"
+			<span class="quote_zh">
+		else
+			<span class="quote">
+ref
+	type="noteAnchor"
+		<a class="noteAnchor">
+	else
+		<a>
+row
+	<tr>
+seg
+	<span>
+term
+	<span>
+title
+	xml:lang="en"
+		<span style="font-style:italic">
+	xml:lang="pi"
+		<span style="font-style:italic">
+		

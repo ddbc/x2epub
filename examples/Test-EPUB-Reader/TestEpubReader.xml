@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Test EPUB Reader</title>
+        <author>周邦信</author>
+      </titleStmt>
+      <publicationStmt>
+        <p>Publication Information</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Information about the source</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+<body>
+  <div>
+    <head>中文測試</head>
+    <p rend="font-family:標楷體">這段應該要以標楷體呈現。</p>
+    <p>圓圈包中文數字一二：㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉</p>
+    <p>這是一個 Extension B 的字 U+2136B：𡍫。</p>
+  </div>
+  <div>
+    <head>表格測試</head>
+    <table>
+      <row>
+        <cell>Row1 Cell1</cell><cell>Row1 Cell2</cell>
+      </row>
+      <row>
+        <cell>Row2 Cell1</cell><cell>Row2 Cell2</cell>
+      </row>
+    </table>
+  </div>
+  <div>
+    <head>圖檔測試</head>
+    <div>
+      <head>PNG</head>
+      <p>行中 PNG 測試 img style="width:1em"：「測試<graphic url="test.png" rend="width:1em"/>測試」。</p>
+      <p>行中 PNG 測試 img width="1" unit="em"：「測試<graphic url="test.png" width="1em"/>測試」。</p>
+      <p>行中 PNG 測試 img width="24"：「測試<graphic url="test.png" width="24px"/>測試」。</p>
+    </div>
+    <div>
+      <head>SVG</head>
+      <p>行中 SVG 測試 img style="width:1em"：「測試<graphic url="test.svg" rend="width:1em"/>測試」。</p>
+      <p>行中 SVG 測試 img width="1" unit="em"：「測試<graphic url="test.svg" rend="width:1em"/>測試」。</p>
+      <p>行中 SVG 測試 img width="24"：「測試<graphic url="test.svg" width="24px"/>測試」。</p>
+    </div>
+  </div>
+</body>
+  </text>
+</TEI>

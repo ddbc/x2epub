@@ -1,0 +1,218 @@
+default namespace = "http://www.tei-c.org/ns/1.0"
+
+start = TEI
+
+data.language = xsd:language | ""
+
+att.global.attributes =
+	attribute xml:id { xsd:ID }?,
+	attribute xml:lang { data.language }?,
+	attribute rend { text }?,
+	attribute rendition { text }?,
+	attribute n { text }?
+
+macro.paraContent = (text | model.phrase | model.global | lg | quote)*
+
+model.phrase = seg | graphic | ref
+model.global = model.milestoneLike | note | figure | title
+model.milestoneLike = pb | lb
+model.respLike = author | respStmt
+
+#------------------------------------------------
+# Elements
+#------------------------------------------------
+
+author =  element author {
+    text
+}
+
+availability = element availability {
+	p
+}
+
+bibl = element bibl {
+	text,
+	att.global.attributes
+}
+
+biblScope = element biblScope {
+	text,
+	att.global.attributes
+}
+
+biblStruct = element biblStruct {
+	monogr, series
+}
+
+body = element body { \div+ }
+
+cell = element cell {
+	text
+}
+
+cit = element cit {
+	(quote, bibl?),
+	att.global.attributes
+}
+
+date = element date {
+	text,
+	attribute when { text }
+}
+
+distributor = element distributor {
+	text
+}
+
+\div = element div { 
+	(
+		head?, p*,
+		(
+			\div* | ( cit | figure | \list | p | quote | table)*
+		)
+	),
+	attribute type { text }?
+}
+
+figure = element figure {
+	(graphic | head | p)*,
+	att.global.attributes
+}
+
+fileDesc =  element fileDesc {
+	titleStmt, publicationStmt, sourceDesc
+}
+
+front = element front {
+	\div* | ( figure | p)*
+}
+
+graphic = element graphic {
+	att.global.attributes,
+	attribute url { text }
+}
+
+head = element head {
+	(text | model.milestoneLike)*
+}
+
+idno = element idno {
+	text,
+	attribute type { text }
+}
+
+imprint = element imprint {
+	publisher, distributor, date
+}
+
+item = element item {
+	(text | \list)*
+}
+
+l = element l {
+	text
+}
+
+lb = element lb {
+	att.global.attributes
+}
+
+lg = element lg {
+	l+,
+	att.global.attributes
+}
+
+\list = element list {
+	item+,
+	att.global.attributes,
+	attribute type { "ordered" | "bulleted" }?
+}
+
+monogr = element monogr {
+	title, imprint
+}
+
+name = element name { text }
+
+note = element note {
+	text,
+	att.global.attributes,
+	attribute place { "bottom" | "end" }?,
+	attribute resp { text }?
+}
+
+p = element p {
+	macro.paraContent,
+	att.global.attributes
+}
+
+pb = element pb {
+	att.global.attributes
+}
+
+publicationStmt = element publicationStmt {
+	(availability | idno | p)+
+}
+
+publisher = element publisher {
+	text
+}
+
+quote = element quote {
+	(
+		text
+		| 
+		( lg | p )*
+	)
+}
+
+ref = element ref {
+	text?,
+	attribute target { text }?,
+	attribute type { "noteAnchor" }?
+}
+
+resp = element resp { text }
+
+respStmt = element respStmt {
+	((resp+, name+) | (name+, resp+)),
+	att.global.attributes,
+	empty
+}
+
+row = element row {
+	cell+
+}
+
+seg = element seg {
+	text,
+	att.global.attributes
+}
+
+series = element series {
+	title+, biblScope
+}
+
+sourceDesc = element sourceDesc {
+	(biblStruct | p)
+}
+
+table = element table {
+	row+,
+	att.global.attributes
+}
+
+TEI = element TEI { teiHeader, \text }
+
+teiHeader = element teiHeader { fileDesc }
+
+\text = element text { front?, body }
+
+title = element title {
+	text,
+	attribute level { "a" | "m" | "j" | "s" | "u" }?
+}
+
+titleStmt = element titleStmt {
+	title, model.respLike*
+}
