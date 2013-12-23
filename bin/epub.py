@@ -27,6 +27,7 @@ class EpubItem:
 		self.dest_path = ''
 		self.html = None
 		self.mime_type = ''
+		self.properties = None
 
 class EpubBook:
 	def __init__(self):
@@ -83,7 +84,7 @@ class EpubBook:
 		self.items[dest_path] = item
 		return item
 
-	def add_html(self, src_path, dest_path, html=None):
+	def add_html(self, src_path, dest_path, html=None, properties=None):
 		''' 在電子書加入一個 HTML '''
 		item = EpubItem()
 		if dest_path == 'cover.html':
@@ -94,6 +95,7 @@ class EpubBook:
 		item.dest_path = dest_path
 		item.html = html
 		item.mime_type = 'application/xhtml+xml'
+		item.properties = properties
 		self.items[dest_path] = item
 		return item
 		
@@ -194,6 +196,8 @@ class EpubBook:
 			s += '<item'
 			if item.dest_path == 'cover.jpg':
 				s += ' properties="cover-image"'
+			elif item.properties is not None:
+				s += ' properties="{}"'.format(item.properties)
 			s += ' id="{}" href="{}" media-type="{}" />\n'.format(item.id, item.dest_path, item.mime_type)
 		s += '</manifest>\n'
 		

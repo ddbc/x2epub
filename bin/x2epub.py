@@ -58,12 +58,18 @@ class XmlToEpub:
 		# 圖片會 copy 到 EPUB 封裝中與 HTML 相同資料夾下面
 		self.config.setdefault('graphic_base', os.path.dirname(config['xml']))
 		
+		# glyph_base
+		# 缺字字圖的來源位置，預設與來源 XML 同一目錄
+		self.config.setdefault('glyph_base', os.path.dirname(config['xml']))
+		
 		self.div_level = 0
 		self.chapter = 0
 		self.counter_note = 0
 		self.head_count = 0
 		self.list_level = 0
 		self.anchors = set()
+		self.chars = {}
+		self.properties = set()
 		
 	def handle_text(self, s):
 		if s is None: return ''
@@ -132,6 +138,7 @@ class XmlToEpub:
 			self.bottom_notes = ''
 			self.counter_note = 0
 			self.anchors = set()
+			self.properties = set()
 			content = self.traverse(e)
 			if (e.get('type')=='copyright') and ('after_copyright' in self.config):
 				content += self.config['after_copyright']
@@ -146,7 +153,11 @@ class XmlToEpub:
 			r += '</body></html>'
 			
 			fn = '{}.htm'.format(self.chapter)
-			self.book.add_html('', fn, r)
+			if len(self.properties) > 0:
+				properties = ' '.join(self.properties)
+			else:
+				properties = None
+			self.book.add_html('', fn, r, properties=properties)
 		else:
 			node = MyNode('div')
 			rend = e.get('rend')
@@ -177,10 +188,25 @@ class XmlToEpub:
 		self.book.add_html('', fn, r)
 		return r
 		
+	def handle_g(self, e):
+		ref = e.get('ref')
+		id = ref[1:]
+		url = self.chars[id]
+		if url.endswith('.svg'):
+			self.properties.add('svg')
+		r = '<img class="glyph" src="{}" width="18" />'.format(url)
+		src = os.path.join(self.config['glyph_base'], url)
+		print(191, src)
+		self.book.add_image(src, url)
+		return r
+		
 	def handle_graphic(self, e):
 		url = e.get('url')
 		rend = e.get('rend')
 		
+		if url.endswith('.svg'):
+			self.properties.add('svg')
+			
 		src = os.path.join(self.config['graphic_base'], e.get('url'))
 		self.book.add_image(src, url)
 		
@@ -426,6 +452,8 @@ class XmlToEpub:
 			r = self.handle_figure(e)
 		elif tag=='front':
 			r = self.handle_front(e)
+		elif tag=='g': 
+			r = self.handle_g(e)
 		elif tag=='graphic': 
 			r = self.handle_graphic(e)
 		elif tag=='head': 
@@ -600,9 +628,20 @@ class XmlToEpub:
 			self.css_filename = os.path.basename(self.config['css'])
 			self.book.add_css(self.config['css'], self.css_filename)
 			
+		# 收集缺字資訊
+		char_decl = root.find('.//charDecl')
+		if char_decl is not None:
+			for e in char_decl.iter('char'):
+				id = e.get('id')
+				graphic = e.find('graphic')
+				url = graphic.get('url')
+				self.chars[id] = url
+				print(id, url)
 		self.current_toc_node = [self.book.toc_root]
 		self.list_level = 0
-		self.traverse(root)
+		
+		text_node = root.find('.//text')
+		self.traverse(text_node)
 		
 		if 'license_template' in self.config:
 			self.add_license_page()

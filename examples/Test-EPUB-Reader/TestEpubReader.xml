@@ -40,14 +40,26 @@
       <head>PNG</head>
       <p>行中 PNG 測試 img style="width:1em"：「測試<graphic url="test.png" rend="width:1em"/>測試」。</p>
       <p>行中 PNG 測試 img width="1" unit="em"：「測試<graphic url="test.png" width="1em"/>測試」。</p>
-      <p>行中 PNG 測試 img width="24"：「測試<graphic url="test.png" width="24px"/>測試」。</p>
+      <p>行中 PNG 測試 img width="18"：「測試<graphic url="test.png" width="18px" rend="vertical-align:middle"/>測試」。</p>
     </div>
     <div>
       <head>SVG</head>
       <p>行中 SVG 測試 img style="width:1em"：「測試<graphic url="test.svg" rend="width:1em"/>測試」。</p>
       <p>行中 SVG 測試 img width="1" unit="em"：「測試<graphic url="test.svg" rend="width:1em"/>測試」。</p>
-      <p>行中 SVG 測試 img width="24"：「測試<graphic url="test.svg" width="24px"/>測試」。</p>
+      <p>行中 SVG 測試 img width="18" vertical-align:top：「測試<graphic url="test.svg" width="18px" rend="vertical-align:top"/>測試」。</p>
+      <p>行中 SVG 測試 img width="18" vertical-align:text-top：「測試<graphic url="test.svg" width="18px" rend="vertical-align:text-top"/>測試」。</p>
+      <p>行中 SVG 測試 img width="18" vertical-align:middle：「測試<graphic url="test.svg" width="18px" rend="vertical-align:middle"/>測試」。</p>
+      <p>行中 SVG 測試 img width="18" vertical-align:bottom：「測試<graphic url="test.svg" width="18px" rend="vertical-align:bottom"/>測試」。</p>
+      <p>行中 SVG 測試 img width="18" vertical-align:text-bottom：「測試<graphic url="test.svg" width="18px" rend="vertical-align:text-bottom"/>測試」。</p>
     </div>
+  </div>
+  <div>
+    <head>羅馬轉寫測試</head>
+        <table>
+      <row><cell>.s</cell><cell>ṣ</cell></row>
+      <row><cell>.d</cell><cell>ḍ</cell></row>
+      <row><cell>.n</cell><cell>ṇ</cell></row>
+    </table>
   </div>
 </body>
   </text>
