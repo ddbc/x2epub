@@ -3,53 +3,52 @@ x2epub
 
 Convert TEI XML to EPUB
 
-°w¹ï·í¥N¦ò¾ÇµÛ§@¡A±q TEI ¤¤¿ï¥Î¼ĞÅÒ¤l¶°¡A°t¦X²£¥Í¹q¤l®Ñ EPUB µ{¦¡¡C
+é‡å°ç•¶ä»£ä½›å­¸è‘—ä½œï¼Œå¾ TEI ä¸­é¸ç”¨æ¨™ç±¤å­é›†ï¼Œé…åˆç”¢ç”Ÿé›»å­æ›¸ EPUB ç¨‹å¼ã€‚
 
-¿ï¥Îªº¼ĞÅÒ¶°»¡©ú¡G
-http://wiki.ddbc.edu.tw/pages/¹q¤l®Ñ_XML_TEI_¼Ğ°O
+é¸ç”¨çš„æ¨™ç±¤é›†èªªæ˜ï¼š
+http://wiki.ddbc.edu.tw/pages/é›»å­æ›¸_XML_TEI_æ¨™è¨˜
 
-schema/ebook.rnc ¬O¥»¼ĞÅÒ¶°ªº schema¡A±Ä¥Î¸û TEI ÄY®æªº­­¨î¡C
+schema/ebook.rnc æ˜¯æœ¬æ¨™ç±¤é›†çš„ schemaï¼Œæ¡ç”¨è¼ƒ TEI åš´æ ¼çš„é™åˆ¶ã€‚
 
 
 Examples
 ------------
 
-examples ¸ê®Æ§¨¸Ì¦³´X­ÓÂ²³æ½d¨Ò
-	example1/simple.xml ¬O¤@­Ó³ÌÂ²³æªº½d¨Ò¡C
-	example2/mixed.xml ¬O¤@­Óºî¦X½d¨Ò¡A¨Ï¥Îªí®æ¡B¹Ïªí¡B¶µ¥Ø²M³æµ¥¼Ğ°O¡C
-	example3/1-1-6.xml ¬O¸tÄYªk®vªº¤@¥»µ²½t¹q¤l®Ñªº¹ê°È½d¨Ò¡C
+examples è³‡æ–™å¤¾è£¡æœ‰å¹¾å€‹ç°¡å–®ç¯„ä¾‹
+	example1/simple.xml æ˜¯ä¸€å€‹æœ€ç°¡å–®çš„ç¯„ä¾‹ã€‚
+	example2/mixed.xml æ˜¯ä¸€å€‹ç¶œåˆç¯„ä¾‹ï¼Œä½¿ç”¨è¡¨æ ¼ã€åœ–è¡¨ã€é …ç›®æ¸…å–®ç­‰æ¨™è¨˜ã€‚
+	example3/1-1-6.xml æ˜¯è–åš´æ³•å¸«çš„ä¸€æœ¬çµç·£é›»å­æ›¸çš„å¯¦å‹™ç¯„ä¾‹ã€‚
 
 
 bin
 ===
 
-bin ¸ê®Æ§¨¸Ì¬O²£¥Í EPUB ªºµ{¦¡
+bin è³‡æ–™å¤¾è£¡æ˜¯ç”¢ç”Ÿ EPUB çš„ç¨‹å¼
 
-Àô¹Ò: 
+ç’°å¢ƒ: 
 
 * python 3.3.2
 * lxml 3.2.3
 	
 x2epub.py
 
-* x2epub.py ¬OÅª¨ú XML¡B²£¥Í EPUB ªºµ{¦¡
-* °õ¦æ x2epub.py -h ¥i¥H¬İ¨ì°Ñ¼Æ»¡©ú
-* ¦pªG°Ñ¼Æ´£¨Ñ EPUB Validator ªº¸ô®|¡A¨º»ò x2epub.py ¦b²£¥Í EPUB ÀÉ¤§«á¤]·|°µÅçÃÒ¡AEPUB Validator ¥i¥H±q³o¸Ì¤U¸ü¡Ghttps://code.google.com/p/epubcheck/
+* x2epub.py æ˜¯è®€å– XMLã€ç”¢ç”Ÿ EPUB çš„ç¨‹å¼
+* å¦‚æœåƒæ•¸æä¾› EPUB Validator çš„è·¯å¾‘ï¼Œé‚£éº¼ x2epub.py åœ¨ç”¢ç”Ÿ EPUB æª”ä¹‹å¾Œä¹Ÿæœƒåšé©—è­‰ï¼ŒEPUB Validator å¯ä»¥å¾é€™è£¡ä¸‹è¼‰ https://code.google.com/p/epubcheck/
 
-run-*.py ¬O°õ¦æ½d¨Ò¡A¥¦©I¥s x2epub.py¡A¨Ã´£¨Ñ¤@¨Ç°Ñ¼Æ¡C
+run-*.py æ˜¯åŸ·è¡Œç¯„ä¾‹ï¼Œå®ƒå‘¼å« x2epub.pyï¼Œä¸¦æä¾›ä¸€äº›åƒæ•¸ã€‚
 
-epub.py ¬O»s§@ EPUB ªº¼Ò²Õ¡Ax2epub ·|¨Ï¥Î¥¦¡Aepub.py §ï¼g¦Ûºô¤Í¤À¨Éªº¼Ò²Õ https://code.google.com/p/python-epub-builder/¡C
+epub.py æ˜¯è£½ä½œ EPUB çš„æ¨¡çµ„ï¼Œx2epub æœƒä½¿ç”¨å®ƒï¼Œepub.py æ”¹å¯«è‡ªç¶²å‹åˆ†äº«çš„æ¨¡çµ„ https://code.google.com/p/python-epub-builder/ã€‚
 
 
 docs
 ------
 
 docs/tei2html.txt
-	> TEI Element Âà¬° HTML Element ¹ï·Ó
+	> TEI Element è½‰ç‚º HTML Element å°ç…§
 
 Notes
 -------
 
-ª`·N¡Grunning under linux, 
-    run.py ¤¤ªºepub_path¬O¨t²Î·|¹Á¸Õ²£¥Íªº¥Ø¿ı¡A¹w³]²£¥ÍÅv­­¼Ò¦¡¬°¡G0755
-    ­Y¸ê®Æ§¨¤w¦s¦b¡A¦ıÅv­­¼Ò¦¡¤£¬°¡G0755, ¦³¤]·|¦³¿ù»~¡A½Ğ¤p¤ß¡C
+æ³¨æ„ï¼šrunning under linux, 
+    run.py ä¸­çš„epub_pathæ˜¯ç³»çµ±æœƒå˜—è©¦ç”¢ç”Ÿçš„ç›®éŒ„ï¼Œé è¨­ç”¢ç”Ÿæ¬Šé™æ¨¡å¼ç‚ºï¼š0755
+    è‹¥è³‡æ–™å¤¾å·²å­˜åœ¨ï¼Œä½†æ¬Šé™æ¨¡å¼ä¸ç‚ºï¼š0755, æœ‰ä¹Ÿæœƒæœ‰éŒ¯èª¤ï¼Œè«‹å°å¿ƒã€‚

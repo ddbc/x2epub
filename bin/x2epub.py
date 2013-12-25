@@ -10,7 +10,6 @@ import argparse, collections
 import datetime
 import os
 import re
-import shutil
 import sys
 from string import Template
 from lxml import etree
@@ -648,12 +647,22 @@ class XmlToEpub:
 		
 		temp = self.config['temp_folder']
 		if os.path.exists(temp):
-			shutil.rmtree(temp)
+			clear_folder(temp)
 		self.book.create_book(temp)
 
 		epub.create_archive(temp, self.config['epub_path'])
 		if 'epub_validator' in self.config:
 			epub.check_epub(self.config['epub_validator'], self.config['epub_path'])
+
+def clear_folder(folder):
+	files = os.listdir(folder)
+	for f in files:
+		path = os.path.join(folder, f)
+		if os.path.isdir(path):
+			clear_folder(path)
+			os.rmdir(path)
+		else:
+			os.remove(path)
 
 def strip_namespaces(tree):
 	# http://wiki.tei-c.org/index.php/Remove-Namespaces.xsl

@@ -125,7 +125,6 @@ class EpubBook:
 		
 	def _write_items(self):
 		for item in self.items.values():
-			print(item.id, item.dest_path)
 			if item.html is None:
 				dest = os.path.join(self.root_dir, 'OPS', item.dest_path)
 				dest_folder = os.path.dirname(dest)
