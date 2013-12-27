@@ -61,6 +61,12 @@
       <row><cell>.n</cell><cell>ṇ</cell></row>
     </table>
   </div>
+  <div>
+    <head>字型測試</head>
+    <p rend="font-family:sans">Sans 字型</p>
+    <p rend="font-family:serif">Serif 字型</p>
+    <p rend="font-family:monospace">Monospace 字型</p>
+  </div>
 </body>
   </text>
 </TEI>
