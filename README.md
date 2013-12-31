@@ -33,7 +33,7 @@ bin 資料夾裡是產生 EPUB 的程式
 x2epub.py
 
 * x2epub.py 是讀取 XML、產生 EPUB 的程式
-* 如果參數提供 EPUB Validator 的路徑，那麼 x2epub.py 在產生 EPUB 檔之後也會做驗證，EPUB Validator 可以從這裡下載 https://code.google.com/p/epubcheck/
+* 說明詳見 docs/x2epub.htm
 
 run-*.py 是執行範例，它呼叫 x2epub.py，並提供一些參數。
 

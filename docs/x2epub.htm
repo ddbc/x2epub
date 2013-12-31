@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="zh-tw" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>x2epub</title>
+<style type="text/css">
+.style1 {
+				margin-left: 40px;
+}
+.style2 {
+				margin-left: 80px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>x2epub</h1>
+<p>將 TEI XML 轉為 EPUB，只處理部份 TEI 標記。</p>
+<h2>class XmlToEpub(config)</h2>
+<h3>config</h3>
+<p class="style1">config 是一個 dict</p>
+<p class="style1">config[&#39;<strong>xml</strong>&#39;] (必要)</p>
+<p class="style2">輸入的 XML 檔路徑</p>
+<p class="style1">config[&#39;<strong>temp_folder</strong>&#39;] (必要)</p>
+<p class="style2">封裝前暫存檔產生位置</p>
+<p class="style1">config[&#39;<strong>epub_path</strong>&#39;] (必要)</p>
+<p class="style2">輸出的 EPUB 路徑</p>
+<p class="style1">config[&#39;<strong>convert_lb_to_br</strong>&#39;] (選項)</p>
+<p class="style2">是否將 lb 標記轉為換行 br 標記，預設為 True。</p>
+<p class="style1">config[&#39;<strong>cover_page</strong>&#39;]<strong> </strong>(選項)</p>
+<p class="style2">封面圖片</p>
+<p class="style1">config[&#39;<strong>css</strong>&#39;] (選項)</p>
+<p class="style2">引用的 CSS 檔的來源位置，會 copy 到 EPUB 封裝中與 HTML 相同資料夾下面</p>
+<p class="style1">config[&#39;<strong>epub_validator</strong>&#39;] (選項)</p>
+<p class="style2">EPUB Validator 路徑</p>
+<p class="style2">如果有提供本參數，那麼 x2epub.py 在產生 EPUB 檔之後會做驗證 (環境中必須已經設好 Java)</p>
+<p class="style2">EPUB Validator 可以從這裡下載  
+<a href="https://code.google.com/p/epubcheck/">https://code.google.com/p/epubcheck/</a></p>
+<p class="style1">config[&#39;<strong>epub_ver</strong>&#39;] (選項)</p>
+<p class="style2">產生的 EPUB 版本，2 或 3 都可以，但 2 測試的比較少，預設是 3。</p>
+<p class="style1">config[&#39;<strong>glyph_base</strong>&#39;] (選項)</p>
+<p class="style2">缺字字圖的來源位置，預設與來源 XML 同一目錄。</p>
+<p class="style1">config[&#39;<strong>graphic_base</strong>&#39;] (選項)</p>
+<p class="style2">圖片的來源位置，會 copy 到 EPUB 封裝中與 HTML 相同資料夾下面</p>
+<p class="style1">config[&#39;<strong>handle_text</strong>&#39;] (選項)</p>
+<p class="style2">文字處理 callback 函式。</p>
+<p class="style2">如果有設定本參數，那麼在將 XML 轉為 HTML 時，遇到文字節點時會呼叫本函式。</p>
+<p class="style2">例如：</p>
+<p class="style2"><code>def replace_diacritic(s):<br />
+&nbsp;&nbsp;&nbsp; s = s.replace(&#39;ṣ&#39;, &#39;.s&#39;)<br />
+&nbsp;&nbsp;&nbsp; return s<br />
+config[&#39;handle_text&#39;] = replace_diacritic</code></p>
+<h3><code>convert()</code></h3>
+<p class="style1">執行轉換將 XML 為 EPUB。例如：</p>
+<p class="style1"><code>config = {<br />
+&nbsp;&nbsp;&nbsp; &#39;xml&#39;: &#39;../examples/example1/simple.xml&#39;,<br />
+&nbsp;&nbsp;&nbsp; &#39;epub_path&#39;: &#39;../output/test-ex1.epub&#39;,<br />
+&nbsp;&nbsp;&nbsp;
+&#39;temp_folder&#39;: &#39;./temp/epub&#39;, #封裝前暫存檔產生位置<br />
+}<br />
+converter = x2epub.XmlToEpub(config)<br />
+converter.convert()</code></p>
+
+</body>
+
+</html>

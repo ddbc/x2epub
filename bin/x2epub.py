@@ -74,6 +74,9 @@ class XmlToEpub:
 		if s is None: return ''
 		s = s.replace('&', '&amp;')
 		s = s.replace('\n', '')
+		if 'handle_text' in self.config:
+			func = self.config['handle_text']
+			s = func(s)
 		return s
 	
 	def traverse(self, node, mode='html'):
