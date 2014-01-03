@@ -541,6 +541,8 @@ class XmlToEpub:
 		root = self.root
 		# 可能有多個作者
 		authors = root.xpath('//titleStmt/author')
+		if len(authors) == 0: # 如果沒有 author 就用 editor
+			authors = root.xpath('//titleStmt/editor')
 		names = []
 		for a in authors:
 			names.append(a.text)
