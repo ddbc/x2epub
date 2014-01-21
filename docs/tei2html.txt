@@ -70,14 +70,20 @@ q
 quote
 	rend="display:block"
 		xml:lang="zh"
-			<p class="quote_zh">
+			<div class="quote quote_zh">
 		else
-			<p class="quote">
+			<div class="quote">
 	else
-		xml:lang="zh"
-			<span class="quote_zh">
+		如果 quote 下有包 p 或 lg
+			xml:lang="zh"
+				<div class="quote quote_zh">
+			else
+				<div class="quote">
 		else
-			<span class="quote">
+			xml:lang="zh"
+				<span class="quote_zh">
+			else
+				<span class="quote">
 ref
 	type="noteAnchor"
 		<a class="noteAnchor">

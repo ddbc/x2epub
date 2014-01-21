@@ -351,12 +351,6 @@ class XmlToEpub:
 		rend = e.get('rend', '')
 		if rend != '':
 			node.set('style', rend)
-		parent = e.getparent()
-		if parent.tag=='quote':
-			if e.get('lang')=='zh':
-				node.set('class', 'quote_zh')
-			else:
-				node.set('class', 'quote')
 		if 'rendition' in e.attrib:
 			node.set('class', e.get('rendition'))
 		node.content = self.traverse(e)
@@ -364,21 +358,24 @@ class XmlToEpub:
 		return r
 		
 	def handle_quote(self, e):
-		rend = e.get('rend')
+		rend = e.get('rend', '')
 		c = HtmlClass('quote')
 		lang = e.get('lang')
-		content = self.traverse(e)
 		if lang is None or lang=='zh':
 			c.add('quote_zh')
-		if rend is None:
-			if (e.find('p') is None) and (e.find('lg') is None):
-				r = '<span class="{}">{}</span>'.format(c, content)
-			else:
-				r = self.traverse(e)
-		elif 'display:block' in rend:
-			r = '<p class="{}" style="{}">{}</p>\n'.format(c, rend, content)
+		node = MyNode('p')
+		node.set('class', c)
+		if 'display:block' in rend:
+			node.tag = 'div'
 		else:
-			r = '<span class="{}" style="{}">{}</span>'.format(c, rend, content)
+			if (e.find('p') is None) and (e.find('lg') is None):
+				node.tag = 'span'
+			else:
+				node.tag = 'div'
+		if rend != '':
+			node.set('style', rend)
+		node.content = self.traverse(e)
+		r = str(node)
 		return r
 		
 	def handle_ref(self, e):
