@@ -252,8 +252,9 @@ class EpubBook:
 		s += self._toc_node2html(self.toc_root)
 		s += '</nav></body></html>'
 		path = os.path.join(self.root_dir, 'OPS', 'toc.html')
-		with open(path, 'w', encoding='utf8') as fo:
-			fo.write(s)
+		fo = open(path, 'w', encoding='utf8')
+		fo.write(s)
+		fo.close()
 
 	def _toc_node2ncx(self, node):
 		r = ''

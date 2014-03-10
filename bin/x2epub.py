@@ -11,6 +11,7 @@ import datetime
 import os
 import re
 import sys
+import shutil
 from string import Template
 from lxml import etree
 import epub
@@ -662,7 +663,8 @@ def clear_folder(folder):
 		path = os.path.join(folder, f)
 		if os.path.isdir(path):
 			clear_folder(path)
-			os.rmdir(path)
+			#os.rmdir(path)
+			shutil.rmtree(path)
 		else:
 			os.remove(path)
 
