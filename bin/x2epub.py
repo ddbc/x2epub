@@ -268,6 +268,14 @@ class XmlToEpub:
 		node.content = head
 		return str(node)
 		
+	def handle_label(self, e):
+		rend = e.get('rend', '')
+		node = MyNode('div')
+		if rend != '':
+			node.set('style', rend)
+		node.content = self.traverse(e)
+		return str(node)
+		
 	def handle_lg(self, e):
 		c = HtmlClass('lg')
 		if 'rendition' in e.attrib:
@@ -348,7 +356,12 @@ class XmlToEpub:
 		return r
 		
 	def handle_p(self, e):
-		node = MyNode('p')
+		# 賢度法師《華嚴經十地品淺釋》p. 332, <p> 包 <lg>
+		if has_descendant(e, 'lg'):
+			tag = 'div'
+		else:
+			tag = 'p'
+		node = MyNode(tag)
 		rend = e.get('rend', '')
 		if rend != '':
 			node.set('style', rend)
@@ -366,7 +379,7 @@ class XmlToEpub:
 			c.add('quote_zh')
 		node = MyNode('p')
 		node.set('class', c)
-		if 'display:block' in rend:
+		if ('display:block' in rend) or ('display:inline-block' in rend):
 			node.tag = 'div'
 		else:
 			if (e.find('p') is None) and (e.find('lg') is None):
@@ -476,6 +489,8 @@ class XmlToEpub:
 			next = e.getnext()
 			if (next is not None) and (next.tag in ('l', 'lb', 'pb')):
 				r += '<br/>\n'
+		elif tag=='label':
+			r = self.handle_label(e)
 		elif tag=='lb':
 			type = e.get('type', '')
 			if mode=='html':
@@ -696,3 +711,8 @@ def strip_namespaces(tree):
 	transform = etree.XSLT(xslt_root)
 	tree = transform(tree)
 	return tree
+
+def has_descendant(ance, desc):
+	for e in ance.iterdescendants(tag=desc):
+		return True
+	return False
