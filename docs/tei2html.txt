@@ -55,6 +55,8 @@ note
 	place="inline"
 		<span class="inline_note">
 p
+	rendition 屬性會轉為 class 屬性
+	例如 <p rendition="#r1"> 會轉為 <p class="r1">
 	quote/p
 		xml:lang="zh"
 			<p class="quote_zh">

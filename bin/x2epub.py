@@ -56,11 +56,13 @@ class XmlToEpub:
 		# graphic_base
 		# 圖片的來源位置，預設與來源 XML 同一目錄
 		# 圖片會 copy 到 EPUB 封裝中與 HTML 相同資料夾下面
-		self.config.setdefault('graphic_base', os.path.dirname(config['xml']))
+		if 'xml' in config:
+			self.config.setdefault('graphic_base', os.path.dirname(config['xml']))
 		
 		# glyph_base
 		# 缺字字圖的來源位置，預設與來源 XML 同一目錄
-		self.config.setdefault('glyph_base', os.path.dirname(config['xml']))
+		if 'xml' in config:
+			self.config.setdefault('glyph_base', os.path.dirname(config['xml']))
 		
 		self.div_level = 0
 		self.chapter = 0
@@ -243,7 +245,11 @@ class XmlToEpub:
 		node = MyNode()
 		if parent.tag == 'div':
 			if e.get('type')=='sub':
-				node.tag = 'h{}'.format(self.div_level+1)
+				if self.div_level > 5:
+					node.tag = 'p'
+					node.set('class', 'head')
+				else:
+					node.tag = 'h{}'.format(self.div_level+1)
 			else:
 				self.head_count += 1
 				toc_node = self.current_toc_node[-1]
@@ -253,7 +259,11 @@ class XmlToEpub:
 				if toc_node.href == '':
 					toc_node.href = '{}.htm#a_{}'.format(self.chapter, self.head_count)
 					toc_node.play_order = self.head_count
-				node.tag = 'h{}'.format(self.div_level)
+				if self.div_level > 6:
+					node.tag = 'p'
+					node.set('class', 'head')
+				else:
+					node.tag = 'h{}'.format(self.div_level)
 				node.set('id', 'a_{}'.format(self.head_count))
 		elif parent.tag == 'table':
 			node.tag = 'caption'
@@ -366,7 +376,10 @@ class XmlToEpub:
 		if rend != '':
 			node.set('style', rend)
 		if 'rendition' in e.attrib:
-			node.set('class', e.get('rendition'))
+			c = e.get('rendition')
+			if c.startswith('#'):
+				c = c[1:]
+			node.set('class', c)
 		node.content = self.traverse(e)
 		r = str(node) + '\n'
 		return r
@@ -612,9 +625,14 @@ class XmlToEpub:
 		node.play_order = self.head_count
 		
 	def convert(self):
-		tree = etree.parse(self.config['xml'])
-		tree.xinclude()
-		tree = strip_namespaces(tree)
+		if 'xml' in self.config:
+			tree = etree.parse(self.config['xml'])
+			tree.xinclude()
+			tree = strip_namespaces(tree)
+		elif 'lxml-etree' in self.config:
+			tree = self.config['lxml-etree']
+		else:
+			return False
 		root = tree.getroot()
 		self.root = root
 
