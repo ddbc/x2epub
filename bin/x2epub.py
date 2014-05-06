@@ -331,7 +331,7 @@ class XmlToEpub:
 		place = e.get('place', '')
 		r = ''
 		content = self.traverse(e)
-		if place == 'inline':
+		if place in ('inline', 'inline2'):  # inline2: 雙行夾註
 			r = '<span class="inline_note">' + content + '</span>'
 		elif place == 'bottom':
 			if mode=='text':
