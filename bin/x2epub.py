@@ -281,6 +281,7 @@ class XmlToEpub:
 	def handle_label(self, e):
 		rend = e.get('rend', '')
 		node = MyNode('div')
+		node.set('class', 'label')
 		if rend != '':
 			node.set('style', rend)
 		node.content = self.traverse(e)

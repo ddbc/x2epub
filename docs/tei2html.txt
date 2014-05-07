@@ -42,6 +42,8 @@ lg
 		<div class="lg quote_zh">
 	else
 		<div class="lg">
+label
+	<div class="label">
 list
 	type="ordered"
 		<ol>
