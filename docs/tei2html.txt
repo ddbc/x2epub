@@ -99,6 +99,8 @@ row
 	<tr>
 seg
 	<span>
+supplied
+	<span class="supplied">
 term
 	<span>
 title

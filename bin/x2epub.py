@@ -332,8 +332,10 @@ class XmlToEpub:
 		place = e.get('place', '')
 		r = ''
 		content = self.traverse(e)
-		if place in ('inline', 'inline2'):  # inline2: 雙行夾註
+		if place == 'inline':
 			r = '<span class="inline_note">' + content + '</span>'
+		elif place == 'inline2':  # 雙行夾註
+			r = '<span class="inline_note2">' + content + '</span>'
 		elif place == 'bottom':
 			if mode=='text':
 				r = ''
@@ -420,6 +422,12 @@ class XmlToEpub:
 		else:
 			r = '<a href="{}">{}</a>'.format(e.get('target'), content)
 		return r
+		
+	def handle_supplied(self,e):
+		node = MyNode('span')
+		node.set('class', 'supplied')
+		node.content = self.traverse(e)
+		return str(node)
 		
 	def handle_table(self, e):
 		rend = e.get('rend')
@@ -546,6 +554,8 @@ class XmlToEpub:
 			rend = e.get('rend')
 			if rend is not None:
 				r = '<span style="{}">{}</span>'.format(rend, r)
+		elif tag=='supplied':
+			r = self.handle_supplied(e)
 		elif tag=='table': 
 			r = self.handle_table(e)
 		elif tag=='term': 
