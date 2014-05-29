@@ -152,7 +152,13 @@ class XmlToEpub:
 			r += '<title>{}</title>\n'.format(self.book.title)
 			if 'css' in self.config:
 				r += '<link rel="stylesheet" type="text/css" href="{}" />\n'.format(self.css_filename)
-			r += '</head>\n<body>\n<div>\n' + content + '</div>'
+			r += '</head>\n<body>\n'
+			node = MyNode('div')
+			rend = e.get('rend')
+			if rend is not None:
+				node.set('style', rend)
+			node.content = content
+			r += str(node)
 			if self.bottom_notes != '':
 				r += '<div>' + self.bottom_notes + '</div>\n'
 			r += '</body></html>'
