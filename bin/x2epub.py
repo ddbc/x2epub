@@ -153,10 +153,16 @@ class XmlToEpub:
 			if 'css' in self.config:
 				r += '<link rel="stylesheet" type="text/css" href="{}" />\n'.format(self.css_filename)
 			r += '</head>\n<body>\n'
+			
 			node = MyNode('div')
 			rend = e.get('rend')
 			if rend is not None:
 				node.set('style', rend)
+				
+			rendition = e.get('rendition')
+			if rendition is not None:
+				node.set('class', rendition)
+				
 			node.content = content
 			r += str(node)
 			if self.bottom_notes != '':
@@ -174,6 +180,11 @@ class XmlToEpub:
 			rend = e.get('rend')
 			if rend is not None:
 				node.set('style', rend)
+				
+			rendition = e.get('rendition')
+			if rendition is not None:
+				node.set('class', rendition)
+				
 			node.content = self.traverse(e)
 			r = str(node)
 		self.div_level -= 1
@@ -556,10 +567,13 @@ class XmlToEpub:
 		elif tag=='row': 
 			r = '<tr>' + self.traverse(e) + '</tr>\n'
 		elif tag=='seg': 
-			r = self.traverse(e)
-			rend = e.get('rend')
-			if rend is not None:
-				r = '<span style="{}">{}</span>'.format(rend, r)
+			node = MyNode('span')
+			if 'rend' in e.attrib:
+				node.set('style', e.get('rend'))
+			if 'rendition' in e.attrib:
+				node.set('class', e.get('rendition'))
+			node.content = self.traverse(e)
+			r = str(node)
 		elif tag=='supplied':
 			r = self.handle_supplied(e)
 		elif tag=='table': 

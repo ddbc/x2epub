@@ -18,6 +18,8 @@ cit
 div
 	rend
 		<div style="...">
+	rendition
+		<div class="...">
 emph
 	<span class="emph">
 figure
@@ -102,6 +104,10 @@ row
 	<tr>
 seg
 	<span>
+seg rend="xxx"
+	<span style="xxx">
+seg rendition="xxx"
+	<span class="xxx">
 supplied
 	<span class="supplied">
 term
