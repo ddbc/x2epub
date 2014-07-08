@@ -63,6 +63,8 @@ note
 		<span class="inline_note">
 	place="inline2" (雙行夾註)
 		<span class="inline_note">
+opener
+	<p class="opener">
 p
 	rendition 屬性會轉為 class 屬性
 	例如 <p rendition="#r1"> 會轉為 <p class="r1">

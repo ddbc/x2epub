@@ -385,6 +385,22 @@ class XmlToEpub:
 			r += content
 		return r
 		
+	def handle_opener(self, e):
+		node = MyNode('p')
+		rend = e.get('rend', '')
+		if rend != '':
+			node.set('style', rend)
+		if 'rendition' in e.attrib:
+			c = e.get('rendition')
+			if c.startswith('#'):
+				c = c[1:]
+			node.set('class', c)
+		else:
+			node.set('class', 'opener')
+		node.content = self.traverse(e)
+		r = str(node) + '\n'
+		return r
+		
 	def handle_p(self, e):
 		# 賢度法師《華嚴經十地品淺釋》p. 332, <p> 包 <lg>
 		if has_descendant(e, 'lg'):
@@ -438,6 +454,18 @@ class XmlToEpub:
 				r = '<a id="{}" href="{}" class="noteAnchor">{}</a>'.format(a_id, target, content)
 		else:
 			r = '<a href="{}">{}</a>'.format(e.get('target'), content)
+		return r
+		
+	def handle_seg(self, e):
+		node = MyNode('span')
+		if 'rend' in e.attrib:
+			node.set('style', e.get('rend'))
+		if 'rendition' in e.attrib:
+			node.set('class', e.get('rendition'))
+		node.content = self.traverse(e)
+		if e.get('rendition') == 'ruby_base' and  node.content == ' ':
+			node.content = '　'
+		r = str(node)
 		return r
 		
 	def handle_supplied(self,e):
@@ -544,6 +572,8 @@ class XmlToEpub:
 			r = self.handle_list(e)
 		elif tag=='note':
 			r = self.handle_note(e, mode)
+		elif tag=='opener': 
+			r = self.handle_opener(e)
 		elif tag=='p': 
 			r = self.handle_p(e)
 		elif tag=='placeName': 
@@ -567,13 +597,7 @@ class XmlToEpub:
 		elif tag=='row': 
 			r = '<tr>' + self.traverse(e) + '</tr>\n'
 		elif tag=='seg': 
-			node = MyNode('span')
-			if 'rend' in e.attrib:
-				node.set('style', e.get('rend'))
-			if 'rendition' in e.attrib:
-				node.set('class', e.get('rendition'))
-			node.content = self.traverse(e)
-			r = str(node)
+			r = self.handle_seg(e)
 		elif tag=='supplied':
 			r = self.handle_supplied(e)
 		elif tag=='table': 
