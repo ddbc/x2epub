@@ -272,7 +272,7 @@ class XmlToEpub:
 				toc_node = self.current_toc_node[-1]
 				if e.get('lang') == 'en' and toc_node.title != '':
 					toc_node.title += ' '
-				toc_node.title += self.traverse(e, 'text')
+				toc_node.title += self.traverse(e, 'toc')
 				if toc_node.href == '':
 					toc_node.href = '{}.htm#a_{}'.format(self.chapter, self.head_count)
 					toc_node.play_order = self.head_count
@@ -354,7 +354,7 @@ class XmlToEpub:
 		elif place == 'inline2':  # 雙行夾註
 			r = '<span class="inline_note2">' + content + '</span>'
 		elif place == 'bottom':
-			if mode=='text':
+			if mode=='toc':
 				r = ''
 			else:
 				id = e.get('id')
@@ -456,7 +456,9 @@ class XmlToEpub:
 			r = '<a href="{}">{}</a>'.format(e.get('target'), content)
 		return r
 		
-	def handle_seg(self, e):
+	def handle_seg(self, e, mode):
+		if mode=='toc':
+			return ''
 		node = MyNode('span')
 		if 'rend' in e.attrib:
 			node.set('style', e.get('rend'))
@@ -597,7 +599,7 @@ class XmlToEpub:
 		elif tag=='row': 
 			r = '<tr>' + self.traverse(e) + '</tr>\n'
 		elif tag=='seg': 
-			r = self.handle_seg(e)
+			r = self.handle_seg(e, mode)
 		elif tag=='supplied':
 			r = self.handle_supplied(e)
 		elif tag=='table': 

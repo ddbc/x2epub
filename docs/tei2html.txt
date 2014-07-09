@@ -29,6 +29,7 @@ graphic
 head
 	div/head
 		<h1>, <h2>....
+		head/seg 不放入 EPUB 目錄
 	figure/head
 		<p class="figure_head">
 	table/head
